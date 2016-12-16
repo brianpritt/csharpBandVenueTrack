@@ -83,22 +83,7 @@ namespace BandTracker.Objects
       if (rdr != null) rdr.Close();
       if (conn != null) conn.Close();
     }
-    public void Edit(string name, string contact)
-    {
-      SqlConnection conn = DB.Connection();
-      conn.Open();
-      SqlCommand cmd = new SqlCommand("UPDATE bands Set band = @NewName, contact = @NewContact OUTPUT INSERTED.band Where id = @BandId;", conn);
-      cmd.Parameters.AddWithValue("@NewName", name);
-      cmd.Parameters.AddWithValue("@NewContact", contact);
-      cmd.Parameters.AddWithValue("@BandId", _id);
-      SqlDataReader rdr = cmd.ExecuteReader();
-      while (rdr.Read())
-      {
-        _name = rdr.GetString(0);
-      }
-      if (rdr != null) rdr.Close();
-      if (conn != null) conn.Close();
-    }
+    
     public static Band Find(int id)
     {
       SqlConnection conn = DB.Connection();

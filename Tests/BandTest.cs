@@ -44,19 +44,6 @@ namespace  BandTracker
       //Assert
       Assert.Equal(foundBand, newBand);
     }
-    // [Fact]
-    // public void Update_UpdatesBandInDb_True()
-    // {
-    //   //Arrange
-    //   Band newBand = new Band("Misery Jackyls", "3308698686");
-    //   newBand.Save();
-    //   //Act
-    //   newBand.Edit("Feds", "3307625903");
-    //   Band editedBand = Band.Find(newBand.GetId());
-    //   //Assert
-    //   Assert.Equal("Feds", editedBand.GetName());
-    // }
-
     public void Dispose()
     {
       Band.DeleteAll();

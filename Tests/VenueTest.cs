@@ -44,18 +44,32 @@ namespace  BandTracker
       //Assert
       Assert.Equal(foundVenue, newVenue);
     }
-    // [Fact]
-    // public void Update_UpdatesBandInDb_True()
-    // {
-    //   //Arrange
-    //   Band newBand = new Band("Misery Jackyls", "3308698686");
-    //   newBand.Save();
-    //   //Act
-    //   newBand.Edit("Feds", "3307625903");
-    //   Band editedBand = Band.Find(newBand.GetId());
-    //   //Assert
-    //   Assert.Equal("Feds", editedBand.GetName());
-    // }
+    [Fact]
+    public void Update_UpdatesVenueInDb_True()
+    {
+      //Arrange
+      Venue newVenue = new Venue("AKron Agora", "3308698686");
+      newVenue.Save();
+      //Act
+      newVenue.Edit("Peabodys", "3307625903");
+      Venue editedVenue = Venue.Find(newVenue.GetId());
+      //Assert
+      Assert.Equal("Peabodys", editedVenue.GetName());
+    }
+    [Fact]
+    public void Delete_DeletesVenueFromDb_True()
+    {
+      //Arrange
+      Venue newVenue = new Venue("Akron Agora", "3308698686");
+      newVenue.Save();
+      //Act
+      Venue.Delete(newVenue.GetId());
+      List<Venue> foundVenues = Venue.GetAll();
+      //Assert
+      Assert.Equal(0,foundVenues.Count);
+    }
+    }
+
 
     public void Dispose()
     {
