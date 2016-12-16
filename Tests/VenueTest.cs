@@ -63,7 +63,7 @@ namespace  BandTracker
       Venue newVenue = new Venue("Akron Agora", "3308698686");
       newVenue.Save();
       //Act
-      Venue.Delete(newVenue.GetId());
+      newVenue.Delete();
       List<Venue> foundVenues = Venue.GetAll();
       //Assert
       Assert.Equal(0,foundVenues.Count);

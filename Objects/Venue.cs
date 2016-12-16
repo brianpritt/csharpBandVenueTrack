@@ -168,12 +168,13 @@ namespace BandTracker.Objects
       return bands;
      }
 
-    public static void Delete(int id)
+    public void Delete()
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
-      SqlCommand cmd = new SqlCommand("Delete FROM venues Where id = @id;", conn);
-      cmd.Parameters.AddWithValue("@id", id);
+      SqlCommand cmd = new SqlCommand("Delete FROM venues Where id = @VenueId; DELETE FROM bands_venues WHERE venue_id = @VenueId", conn);
+      cmd.Parameters.AddWithValue("@VenueId", this.GetId());
+
       cmd.ExecuteNonQuery();
       if (conn != null) conn.Close();
     }
@@ -183,7 +184,7 @@ namespace BandTracker.Objects
       conn.Open();
       SqlCommand cmd = new SqlCommand("DELETE FROM venues; DELETE FROM bands_venues;", conn);
       cmd.ExecuteNonQuery();
-      if (conn != null) conn.Close();
+      conn.Close();
     }
 
   }
