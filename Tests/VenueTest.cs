@@ -68,7 +68,22 @@ namespace  BandTracker
       //Assert
       Assert.Equal(0,foundVenues.Count);
     }
-    
+    [Fact]
+    public void AddBand_MakesBandVenueRelationship_True()
+    {
+      //Arrange
+      Venue newVenue = new Venue("Akron Agora", "3308698686");
+      newVenue.Save();
+      Band newBand = new Band("Misery Jackyls", "3308698686");
+      newBand.Save();
+      //Act
+      newVenue.AddBand(newBand);
+      List<Band> result = newVenue.GetBands();
+      List<Band> testList = new List<Band>{newBand};
+      //Assert
+      Assert.Equal(testList, result);
+    }
+
     public void Dispose()
     {
       Venue.DeleteAll();
