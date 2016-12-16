@@ -8,7 +8,7 @@ using BandTracker.Objects;
 
 namespace  BandTracker
 {
-  public class BandTest : IDisposable
+  public class VenueTest : IDisposable
   {
     public void StudentTest()
     {
@@ -19,7 +19,7 @@ namespace  BandTracker
     {
       //Arrange
       //Act
-      int result = Band.GetAll().Count;
+      int result = Venue.GetAll().Count;
       //Assert
       Assert.Equal(0, result);
     }
@@ -27,22 +27,22 @@ namespace  BandTracker
     public void Save_SavesToDb_True()
     {
       //Arrange
-      Band newBand = new Band("Misery Jackyls", "3308698686");
-      newBand.Save();
+      Venue newVenue = new Venue("Akron Agora", "3308698686");
+      newVenue.Save();
       //Act
-      List<Band> foundBands = Band.GetAll();
+      List<Venue> foundVenues = Venue.GetAll();
       //Assert
-      Assert.Equal(1,foundBands.Count);
+      Assert.Equal(1,foundVenues.Count);
     }
     [Fact]
-    public void Find_FindsBandInDB_True()
+    public void Find_FindsVenueInDB_True()
     {
       //Arrange
-      Band newBand = new Band("Misery Jackyls", "3308698686");
-      newBand.Save();
-      Band foundBand = Band.Find(newBand.GetId());
+      Venue newVenue = new Venue("AKron Agora", "3308698686");
+      newVenue.Save();
+      Venue foundVenue = Venue.Find(newVenue.GetId());
       //Assert
-      Assert.Equal(foundBand, newBand);
+      Assert.Equal(foundVenue, newVenue);
     }
     // [Fact]
     // public void Update_UpdatesBandInDb_True()
@@ -59,7 +59,7 @@ namespace  BandTracker
 
     public void Dispose()
     {
-      Band.DeleteAll();
+      Venue.DeleteAll();
     }
   }
 }

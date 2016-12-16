@@ -71,7 +71,7 @@ namespace BandTracker.Objects
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
-      SqlCommand cmd = new SqlCommand ("INSERT INTO bands (band, contact) OUTPUT INSERTED.id VALUES(@Name, @Contact);", conn);
+      SqlCommand cmd = new SqlCommand("INSERT INTO bands (band, contact) OUTPUT INSERTED.id VALUES(@Name, @Contact);", conn);
       cmd.Parameters.AddWithValue("@Name", _name);
       cmd.Parameters.AddWithValue("@Contact", _contact);
 
@@ -79,6 +79,22 @@ namespace BandTracker.Objects
       while(rdr.Read())
       {
         _id = rdr.GetInt32(0);
+      }
+      if (rdr != null) rdr.Close();
+      if (conn != null) conn.Close();
+    }
+    public void Edit(string name, string contact)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand("UPDATE bands Set band = @NewName, contact = @NewContact OUTPUT INSERTED.band Where id = @BandId;", conn);
+      cmd.Parameters.AddWithValue("@NewName", name);
+      cmd.Parameters.AddWithValue("@NewContact", contact);
+      cmd.Parameters.AddWithValue("@BandId", _id);
+      SqlDataReader rdr = cmd.ExecuteReader();
+      while (rdr.Read())
+      {
+        _name = rdr.GetString(0);
       }
       if (rdr != null) rdr.Close();
       if (conn != null) conn.Close();
