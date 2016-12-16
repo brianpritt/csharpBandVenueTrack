@@ -68,9 +68,7 @@ namespace  BandTracker
       //Assert
       Assert.Equal(0,foundVenues.Count);
     }
-    }
-
-
+    
     public void Dispose()
     {
       Venue.DeleteAll();

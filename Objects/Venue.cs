@@ -103,20 +103,29 @@ namespace BandTracker.Objects
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
-      SqlCommand cmd = new SqlCommand("SELECT Venue, contact FROM Venues WHERE id = @Id;", conn);
+      SqlCommand cmd = new SqlCommand("SELECT venue, contact FROM venues WHERE id = @Id;", conn);
       cmd.Parameters.AddWithValue("@Id", id);
       SqlDataReader rdr = cmd.ExecuteReader();
 
-      string Venue = null;
+      string venue = null;
       string contact = null;
       while(rdr.Read())
       {
-        Venue = rdr.GetString(0);
+        venue = rdr.GetString(0);
         contact = rdr.GetString(1);
       }
       if (rdr != null) rdr.Close();
       if (conn != null) conn.Close();
-      return new Venue(Venue, contact, id);
+      return new Venue(venue, contact, id);
+    }
+    public static void Delete(int id)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand("Delete FROM venues Where id = @id;", conn);
+      cmd.Parameters.AddWithValue("@id", id);
+      cmd.ExecuteNonQuery();
+      if (conn != null) conn.Close();
     }
     public static void DeleteAll()
     {
