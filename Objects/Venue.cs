@@ -182,7 +182,7 @@ namespace BandTracker.Objects
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
-      SqlCommand cmd = new SqlCommand("DELETE FROM venues; DELETE FROM bands_venues;", conn);
+      SqlCommand cmd = new SqlCommand("DELETE FROM venues; ", conn);
       cmd.ExecuteNonQuery();
       conn.Close();
     }
