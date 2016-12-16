@@ -50,7 +50,7 @@ namespace BandTracker.Objects
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
-      SqlCommand cmd = new SqlCommand ("SELECT * FROM Venues;", conn);
+      SqlCommand cmd = new SqlCommand ("SELECT * FROM venues;", conn);
       SqlDataReader rdr = cmd.ExecuteReader();
       List<Venue> allVenues = new List<Venue>{};
 
@@ -87,7 +87,7 @@ namespace BandTracker.Objects
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
-      SqlCommand cmd = new SqlCommand("UPDATE Venues Set Venue = @NewName, contact = @NewContact OUTPUT INSERTED.Venue Where id = @VenueId;", conn);
+      SqlCommand cmd = new SqlCommand("UPDATE venues Set venue = @NewName, contact = @NewContact OUTPUT INSERTED.Venue Where id = @VenueId;", conn);
       cmd.Parameters.AddWithValue("@NewName", name);
       cmd.Parameters.AddWithValue("@NewContact", contact);
       cmd.Parameters.AddWithValue("@VenueId", _id);
@@ -181,7 +181,7 @@ namespace BandTracker.Objects
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
-      SqlCommand cmd = new SqlCommand("DELETE FROM Venues;", conn);
+      SqlCommand cmd = new SqlCommand("DELETE FROM venues; DELETE FROM bands_venues;", conn);
       cmd.ExecuteNonQuery();
       if (conn != null) conn.Close();
     }
