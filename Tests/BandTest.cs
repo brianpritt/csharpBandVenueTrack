@@ -34,6 +34,16 @@ namespace  BandTracker
       //Assert
       Assert.Equal(1,foundBands.Count);
     }
+    [Fact]
+    public void Find_FindsBandInDB_True()
+    {
+      //Arrange
+      Band newBand = new Band("Misery Jackyls", "3308698686");
+      newBand.Save();
+      Band foundBand = Band.Find(newBand.GetId());
+      //Assert
+      Assert.Equal(foundBand, newBand);
+    }
     public void Dispose()
     {
       Band.DeleteAll();
