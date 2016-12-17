@@ -7,9 +7,21 @@
       <h1>Band Tracker</h1>
       <hr>
       <h2>@Model.GetName()</h2><hr>
-      <h3>@Model.GetContact()<h3>
+      <h3>Contact Info: @Model.GetContact()<h3>
+      <h4>Venues Played at:</h4>
+      @foreach(var venue in Model.GetVenues())
+      {
+        <li>@venue.GetName()</li>
+      }
 
+      <h4><a href="/add/band/venue">Add this band to a venue</a></h4>
+      <select class="form-control" name = "venue_id">
+        @foreach(var listItem in Model.GetVenues())
+        {
+          <option value="@listItem.GetId()">@listItem.GetName()</option>
+        }
+      </select>
       <h5><a href="/">Home</a></h5>
-      <h5><a href="/add/band">Add Band</a></h5>
+      <h5><a href="/add/band">Add.View Bands</a></h5>
       <h5><a href="/add/venue">Add Venue</a></h5>
     </div>

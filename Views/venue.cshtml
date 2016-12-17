@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+@{
+  Layout="Shared/_Layout.cshtml";
+}
+
+  <div class="container">
+      <h1>Band Tracker</h1>
+      <hr>
+      <h2>@Model["band"].GetName()</h2>
+      <hr>
+      <h3>Contact Info: @Model["band"].GetContact()<h3>
+      <hr>
+      <h3>Bands that have played here:</h3>
+      @foreach(var bands in Model["venuesPlayed"])
+      {
+        <li><a href="/band/@Model.GetId()">@Model.GetName()</a><li>
+      }
+      <hr>
+      <h3>Add a Band to this venue</h3>
+      <form class="" action="/venue/add/band" method="post">
+
+      <select class="form-control" name = "venue_id">
+        @foreach(var listItem in Model["venues"]
+        {
+          <option value="@listItem.GetId()">@listItem.GetName()</option>
+        }
+      </select>
+      <button type="submit" name="button">Add band to venue</button>
+    </form>
+      <h5><a href="/">Home</a></h5>
+      <h5><a href="/add/band">Add/View Bands</a></h5>
+      <h5><a href="/add/venue">Add/View Venues</a></h5>
+    </div>

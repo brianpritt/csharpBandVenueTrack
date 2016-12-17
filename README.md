@@ -32,8 +32,6 @@ This application allows the user to enter multiple venues and multiple bands.  I
 * _In browser window got to: localhost:5004/_
 
 
-_{Leave nothing to chance! You want it to be easy for potential users, employers and collaborators to run your app. Do I need to run a server? How should I set up my databases? Is there other code this app depends on?}_
-
 ## This application conforms to the following specifications:
 * 1 THe application starts with two empty databases.
   * Input: _null_
@@ -68,17 +66,23 @@ _{Leave nothing to chance! You want it to be easy for potential users, employers
 * 11 The application will list all bands that have played at a specific venue
   * Input: The Crystal Ballroom
   * Output: Krishna Das, David Stringer
+
 ## Known Bugs
 
-_{Are there issues that have not yet been resolved that you want to let users know you know?  Outline any issues that would impact use of your application.  Share any workarounds that are in place. }_
+At time of commit, there were no known bugs
 
 ## Support and contact details
 
-_{Let people know what to do if they run into any issues or have questions, ideas or concerns.  Encourage them to contact you or make a contribution to the code.}_
+_For comments, questions and bug reports, visit project page:_
+* https://github.com/brianpritt/cSharpHairSalon
+
+My personal GitHub page
+* https://github.com/brianpritt
 
 ## Technologies Used
 
-_{Tell me about the languages and tools you used to create this app. Assume that I know you probably used HTML and CSS. If you did something really cool using only HTML, point that out.}_
+This application relies on Microsoft .NET.  Other technologies include the Nancy Framework, and Razor view Engine.  HTML, CSS, and JavaScript are used as well.
+
 
 ### License
 

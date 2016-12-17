@@ -22,15 +22,35 @@ namespace BandTracker
         return View["bands.cshtml", Band.GetAll()];
       };
       Get["/band/{id}"] = parameters =>{
+        Dictionary<string, object> bandDict = new Dictionary<string, object>();
         var currentBand = Band.Find(parameters.id);
-        return View["band.cshtml", currentBand];
+        bandDict.Add("band", currentBand);
+        List<Venue> allVenues = Venue.GetAll();
+        bandDict.Add("venues", allVenues);
+        List<Venue> bandVenues = Venue.GetBands();
+        bandDict.Add("venuesPlayed",bandVenues);
+        return View["band.cshtml", bandDict];
       };
 
       Get["/add/venue"] = _ => {
         List<Venue> allVenues = Venue.GetAll();
         return View["venue_form.cshtml", allVenues];
       };
-
+      Post["/add/venue"] = _ => {
+        Venue newVenue = new Venue(Request.Form["venue-name"],Request.Form["contact"]);
+        newVenue.Save();
+        return View["venues.cshtml", Venue.GetAll()];
+      };
+      Get["/venue/{id}"] = parameters =>{
+        Dictionary<string, object> VenueDict = new Dictionary<string, object>();
+        var currentVenue = Venue.Find(parameters.id);
+        VenueDict.Add("Venue", currentVenue);
+        List<Band> allBands = Band.GetAll();
+        VenueDict.Add("bands", allBands);
+        List<Venue> bandVenues = Venue.GetBands();
+        VenueDict.Add("bandsPlayed",bandVenues);
+        return View["band.cshtml", VenueDict];
+      };
     }
   }
 }
