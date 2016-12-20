@@ -27,7 +27,7 @@ namespace BandTracker
         bandDict.Add("band", currentBand);
         List<Venue> allVenues = Venue.GetAll();
         bandDict.Add("venues", allVenues);
-        List<Venue> bandVenues = Venue.GetBands();
+        List<Venue> bandVenues = currentBand.GetVenues();
         bandDict.Add("venuesPlayed",bandVenues);
         return View["band.cshtml", bandDict];
       };
@@ -47,9 +47,9 @@ namespace BandTracker
         VenueDict.Add("Venue", currentVenue);
         List<Band> allBands = Band.GetAll();
         VenueDict.Add("bands", allBands);
-        List<Venue> bandVenues = Venue.GetBands();
+        List<Band> bandVenues = currentVenue.GetBands();
         VenueDict.Add("bandsPlayed",bandVenues);
-        return View["band.cshtml", VenueDict];
+        return View["venue.cshtml", VenueDict];
       };
     }
   }
