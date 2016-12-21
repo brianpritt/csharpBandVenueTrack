@@ -19,7 +19,7 @@ This application allows the user to enter multiple venues and multiple bands.  I
     * GO
     * CREATE TABLE bands (id INT IDENTITY(1,1), band VARCHAR(255), contact VARCHAR(255));
     * GO
-    * CREATE TABLE venue (id INT IDENTITY(1,1), venue VARCHAR(255), contact VARCHAR(255), stylist_id INT)
+    * CREATE TABLE venues (id INT IDENTITY(1,1), venue VARCHAR(255), contact VARCHAR(255))
     * GO
     * CREATE TABLE bands_venues (id INT IDENTITY(1,1), venue_id INT, band_id INT)
     * GO

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+@{
+  Layout="Shared/_Layout.cshtml";
+}
+
+  <div class="container">
+      <h1>Band Tracker</h1>
+      <h2></h2><hr>
+      <h3>Edit Venue:</h3>
+
+      <hr>
+      <h3>Add Venue</h3>
+      <form  action="/edit/venue/@Model.GetId()" method="post">
+        <input type="hidden" name="_method" value="PATCH">
+        <input type="text" name="venue-name" required value="@Model.GetName()" class="form-control">
+        <input type="text" name="contact" required value="@Model.GetContact()" class="form-control">
+        <button type="submit" name="button" class="btn btn-info">Edit Venue</button>
+      </form>
+      <h5><a href="/add/band">Add/View Bands</a></h5>
+    </div>

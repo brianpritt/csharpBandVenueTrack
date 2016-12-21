@@ -15,8 +15,13 @@
       }
       <hr>
       <h4><a href="/add/venue/@Model["Venue"].GetId()/band">Add this venue to a band</a></h4>
+      <h4><a href="/edit/venue/@Model["Venue"].GetId()">Edit this Venue</a></h4>
       <hr>
-    </form>
+      <form action="/venue/@Model["Venue"].GetId()/delete" method="post">
+        <input type="hidden" name="_method" value="DELETE">
+        <button class="btn btn-danger"type="submit" name="delete">Delete this Venue</button>
+      </form>
+      <hr>
       <h5><a href="/add/band">Add/View Bands</a></h5>
       <h5><a href="/add/venue">Add/View Venues</a></h5>
   </div>

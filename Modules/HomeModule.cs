@@ -97,6 +97,26 @@ namespace BandTracker
         venueDict.Add("bandsPlayed",bandVenues);
         return View["venue.cshtml", venueDict];
       };
+      Get["/edit/venue/{id}"] = parameters =>{
+        Venue currentVenue = Venue.Find(parameters.id);
+        return View["edit_venue_form.cshtml", currentVenue];
+      };
+      Patch["edit/venue/{id}"] = parameters =>{
+        Dictionary<string, object> VenueDict = new Dictionary<string, object>();
+        Venue currentVenue = Venue.Find(parameters.id);
+        currentVenue.Edit(Request.Form["venue-name"], Request.Form["contact"]);
+        VenueDict.Add("Venue", currentVenue);
+        List<Band> allBands = Band.GetAll();
+        VenueDict.Add("bands", allBands);
+        List<Band> bandVenues = currentVenue.GetBands();
+        VenueDict.Add("bandsPlayed",bandVenues);
+        return View["venue.cshtml", VenueDict];
+      };
+      Delete["/venue/{id}/delete"] = parameters =>{
+        Venue currentVenue = Venue.Find(parameters.id);
+        currentVenue.Delete();
+        return View["venue_form.cshtml", Venue.GetAll()];
+      };
     }
   }
 }
