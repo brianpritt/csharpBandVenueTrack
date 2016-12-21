@@ -9,7 +9,7 @@
       <h2>Add a Band that has played at @Model["Venue"].GetName():</h2>
       <form action="/add/venue/@Model["Venue"].GetId()/band" method="post">
         <select class="form-control" name = "band_id">
-          @foreach(var listItem in Model["bands"])
+          @foreach(var listItem in Model["band"])
           {
             <option value="@listItem.GetId()">@listItem.GetName()</option>
           }

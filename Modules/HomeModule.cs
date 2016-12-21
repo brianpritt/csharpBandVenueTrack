@@ -81,7 +81,7 @@ namespace BandTracker
         List<Band> allBands = Band.GetAll();
         Dictionary<string, object> bandVenues = new Dictionary<string, object>();
         bandVenues.Add("band", allBands);
-        bandVenues.Add("venues", currentVenue);
+        bandVenues.Add("Venue", currentVenue);
         return View["add_band_to_venue.cshtml", bandVenues];
       };
       Post["/add/venue/{id}/band"] = parameters => {

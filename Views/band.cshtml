@@ -11,9 +11,9 @@
       <h4>Venues Played at:</h4>
       @foreach(var venue in Model["band"].GetVenues())
       {
-        <li>@venue.GetName()</li>
+        <li><a href="/venue/@venue.GetId()">@venue.GetName()</a></li>
       }
-
+      <hr>
       <h4><a href="/add/band/@Model["band"].GetId()/venue">Add this band to a venue</a></h4>
       <hr>
       <form action="/band/@Model["band"].GetId()/delete" method="post">
@@ -21,7 +21,6 @@
         <button type="submit" class="btn btn-danger">Delete Band</button>
       </form>
       <hr>
-      <h5><a href="/">Home</a></h5>
-      <h5><a href="/add/band">Add.View Bands</a></h5>
-      <h5><a href="/add/venue">Add Venue</a></h5>
+      <h5><a href="/add/band">Add/View Bands</a></h5>
+      <h5><a href="/add/venue">Add/View Venues</a></h5>
     </div>
