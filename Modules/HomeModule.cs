@@ -52,6 +52,11 @@ namespace BandTracker
         bandDict.Add("venuesPlayed",bandVenues);
         return View["band.cshtml", bandDict];
       };
+      Delete["/band/{id}/delete"] = parameters =>{
+        Band currentBand = Band.Find(parameters.id);
+        currentBand.Delete();
+        return View["band_form.cshtml", Band.GetAll()];
+      };
       Get["/add/venue"] = _ => {
         List<Venue> allVenues = Venue.GetAll();
         return View["venue_form.cshtml", allVenues];
@@ -70,6 +75,27 @@ namespace BandTracker
         List<Band> bandVenues = currentVenue.GetBands();
         VenueDict.Add("bandsPlayed",bandVenues);
         return View["venue.cshtml", VenueDict];
+      };
+      Get["/add/venue/{id}/band"] = parameters => {
+        Venue currentVenue = Venue.Find(parameters.id);
+        List<Band> allBands = Band.GetAll();
+        Dictionary<string, object> bandVenues = new Dictionary<string, object>();
+        bandVenues.Add("band", allBands);
+        bandVenues.Add("venues", currentVenue);
+        return View["add_band_to_venue.cshtml", bandVenues];
+      };
+      Post["/add/venue/{id}/band"] = parameters => {
+        Dictionary<string, object> venueDict = new Dictionary<string, object>();
+        Venue currentVenue = Venue.Find(parameters.id);
+        int bandMenueItem = int.Parse(Request.Form["band_id"]);
+        Band currentBand = Band.Find(bandMenueItem);
+        currentVenue.AddBand(currentBand);
+        venueDict.Add("Venue", currentVenue);
+        List<Band> allBands = Band.GetAll();
+        venueDict.Add("bands", allBands);
+        List<Band> bandVenues = currentVenue.GetBands();
+        venueDict.Add("bandsPlayed",bandVenues);
+        return View["venue.cshtml", venueDict];
       };
     }
   }

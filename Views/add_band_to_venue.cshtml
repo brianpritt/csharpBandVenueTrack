@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+@{
+  Layout="Shared/_Layout.cshtml";
+}
+
+  <div class="container">
+      <h1>Band Tracker</h1>
+      <hr>
+      <h2>Add a Band that has played at @Model["Venue"].GetName():</h2>
+      <form action="/add/venue/@Model["Venue"].GetId()/band" method="post">
+        <select class="form-control" name = "band_id">
+          @foreach(var listItem in Model["bands"])
+          {
+            <option value="@listItem.GetId()">@listItem.GetName()</option>
+          }
+        </select>
+        <button class ="btn btn-info"type="submit" name="button">Add Band</button>
+    </form>
+      <hr>
+
+      <h5><a href="/">Home</a></h5>
+      <h5><a href="/add/band">Add/View Bands</a></h5>
+    </div>
