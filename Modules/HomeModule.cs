@@ -42,7 +42,8 @@ namespace BandTracker
       Post["/add/band/{id}/venue"] = parameters => {
         Dictionary<string, object> bandDict = new Dictionary<string, object>();
         Band currentBand = Band.Find(parameters.id);
-        Venue currentVenue = Venue.Find(int.Parse(Request.Form("venue-id")));
+        int venueMenueItem = int.Parse(Request.Form["venue_id"]);
+        Venue currentVenue = Venue.Find(venueMenueItem);
         currentBand.AddVenue(currentVenue);
         bandDict.Add("band", currentBand);
         List<Venue> allVenues = Venue.GetAll();
